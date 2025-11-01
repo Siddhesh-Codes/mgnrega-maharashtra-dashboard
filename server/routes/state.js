@@ -30,12 +30,16 @@ router.get('/', async (req, res) => {
 router.get('/:stateName/districts', async (req, res) => {
   try {
     const stateName = req.params.stateName.toUpperCase();
+    console.log('📍 Fetching districts for state:', stateName);
     
     if (!INDIAN_STATES[stateName]) {
-      return res.status(404).json({ error: 'State not found' });
+      console.error('❌ State not found:', stateName);
+      console.log('Available states:', Object.keys(INDIAN_STATES));
+      return res.status(404).json({ error: 'State not found', requestedState: stateName });
     }
     
     const districts = INDIAN_STATES[stateName].districts.sort();
+    console.log(`✅ Found ${districts.length} districts for ${stateName}`);
     res.json({ state: stateName, districts });
   } catch (error) {
     console.error('Error fetching districts:', error);

@@ -27,21 +27,34 @@ function Home() {
 
   const fetchStates = async () => {
     try {
+      console.log('Fetching states...');
       const response = await axios.get('/api/states');
-      setStates(response.data.data);
+      console.log('States response:', response.data);
+      setStates(response.data.data || []);
+      
+      // Set first state as default if not set
+      if (response.data.data && response.data.data.length > 0 && !selectedState) {
+        setSelectedState(response.data.data[0].name);
+      }
     } catch (error) {
       console.error('Error fetching states:', error);
+      console.error('Error details:', error.response?.data);
+      setStates([]);
     }
   };
 
   const fetchDistricts = async () => {
     try {
       setLoading(true);
+      console.log('Fetching districts for state:', selectedState);
       const response = await axios.get(`/api/states/${selectedState}/districts`);
-      setDistricts(response.data.districts);
+      console.log('Districts response:', response.data);
+      setDistricts(response.data.districts || []);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching districts:', error);
+      console.error('Error details:', error.response?.data);
+      setDistricts([]);
       setLoading(false);
     }
   };
