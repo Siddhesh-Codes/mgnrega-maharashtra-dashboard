@@ -5,6 +5,7 @@ import {
   TrendingUp, Building2, CheckCircle, Clock, Award
 } from 'lucide-react';
 import axios from 'axios';
+import { useLanguage } from '../context/LanguageContext';
 import { 
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
@@ -14,6 +15,7 @@ import './DistrictDashboard.css';
 function DistrictDashboard() {
   const { districtName } = useParams();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +38,7 @@ function DistrictDashboard() {
     return (
       <div className="loading-page">
         <div className="spinner"></div>
-        <p>आपके जिले का डेटा लोड हो रहा है...</p>
+        <p>{t('loading')}</p>
       </div>
     );
   }
@@ -44,9 +46,9 @@ function DistrictDashboard() {
   if (!data) {
     return (
       <div className="error-page">
-        <p>डेटा उपलब्ध नहीं है</p>
+        <p>{t('noData')}</p>
         <button onClick={() => navigate('/')} className="back-btn">
-          वापस जाएं
+          {t('backToHome')}
         </button>
       </div>
     );

@@ -40,6 +40,10 @@ export const translations = {
     noData: 'No data available',
     backToHome: 'Back to Home',
     information: 'Information',
+    beneficiaries: 'Beneficiaries',
+    guaranteedDays: '100 Days Guaranteed Employment',
+    ruralDevelopment: 'Rural Development',
+    infrastructure: 'Infrastructure',
   },
   
   hi: {
@@ -79,6 +83,10 @@ export const translations = {
     noData: 'कोई डेटा उपलब्ध नहीं',
     backToHome: 'होम पर वापस जाएं',
     information: 'जानकारी',
+    beneficiaries: 'लाभार्थी',
+    guaranteedDays: '100 दिन गारंटीड रोजगार',
+    ruralDevelopment: 'ग्रामीण विकास',
+    infrastructure: 'बुनियादी ढांचा',
   },
   
   mr: {
@@ -90,6 +98,10 @@ export const translations = {
     selectDistrict: 'जिल्हा निवडा',
     viewDashboard: 'Dashboard पहा',
     detecting: 'स्थान शोधत आहे...',
+    beneficiaries: 'लाभार्थी',
+    guaranteedDays: '100 दिवस गॅरंटीड रोजगार',
+    ruralDevelopment: 'ग्रामीण विकास',
+    infrastructure: 'पायाभूत सुविधा',
     
     // Dashboard
     districtDashboard: 'जिल्हा Dashboard',

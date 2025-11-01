@@ -16,14 +16,14 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/150px-Emblem_of_India.svg.png" 
-              alt="India Emblem" 
-              className="logo-img"
-            />
+            <div className="logo-emblem">🏛️</div>
             <div className="logo-text">
               <h1>MGNREGA</h1>
-              <p className="logo-subtitle">Our voice, our rights</p>
+              <p className="logo-subtitle">
+                {language === 'en' ? 'Our voice, our rights' : 
+                 language === 'hi' ? 'हमारी आवाज़, हमारे अधिकार' : 
+                 'आमचा आवाज, आमचे अधिकार'}
+              </p>
             </div>
           </Link>
           

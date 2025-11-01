@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Search, Navigation, TrendingUp } from 'lucide-react';
 import axios from 'axios';
+import { useLanguage } from '../context/LanguageContext';
 import './Home.css';
 
 function Home() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [districts, setDistricts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -72,10 +74,10 @@ function Home() {
         <div className="container">
           <div className="hero-content">
             <h1 className="hero-title">
-              अपने जिले का MGNREGA प्रदर्शन देखें
+              {t('heroTitle')}
             </h1>
             <p className="hero-subtitle">
-              महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी योजना
+              {t('heroSubtitle')}
             </p>
             
             <button 
@@ -86,14 +88,14 @@ function Home() {
               <Navigation size={28} />
               <div>
                 <div className="btn-text">
-                  {detectingLocation ? 'खोजा जा रहा है...' : 'अपना जिला खोजें'}
+                  {detectingLocation ? t('detecting') : t('autoDetect')}
                 </div>
-                <div className="btn-subtext">स्वचालित स्थान पहचान</div>
+                <div className="btn-subtext">{t('autoDetect')}</div>
               </div>
             </button>
             
             <div className="or-divider">
-              <span>या</span>
+              <span>Or</span>
             </div>
           </div>
         </div>
@@ -103,14 +105,14 @@ function Home() {
         <div className="search-section card">
           <h2 className="section-title">
             <MapPin size={32} />
-            अपना जिला चुनें
+            {t('selectDistrict')}
           </h2>
           
           <div className="search-box">
             <Search className="search-icon" size={24} />
             <input
               type="text"
-              placeholder="जिले का नाम खोजें..."
+              placeholder={t('searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -120,7 +122,7 @@ function Home() {
           {loading ? (
             <div className="loading-container">
               <div className="spinner"></div>
-              <p>जिले लोड हो रहे हैं...</p>
+              <p>{t('loading')}</p>
             </div>
           ) : (
             <div className="districts-grid">
@@ -137,7 +139,7 @@ function Home() {
                   </button>
                 ))
               ) : (
-                <p className="no-results">कोई जिला नहीं मिला</p>
+                <p className="no-results">{t('noData')}</p>
               )}
             </div>
           )}

@@ -24,13 +24,16 @@
   color: white;
 }
 
-.logo-img {
+.logo-emblem {
   width: 60px;
   height: 60px;
-  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: white;
-  padding: 0.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-text h1 {
