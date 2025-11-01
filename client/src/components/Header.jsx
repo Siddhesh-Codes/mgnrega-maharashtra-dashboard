@@ -17,7 +17,7 @@ function Header() {
         <div className="header-content">
           <Link to="/" className="logo">
             <div className="logo-emblem">
-              <MapPin size={40} />
+              <img src="/logo.svg" alt="MGNREGA Logo" className="logo-image" />
             </div>
             <div className="logo-text">
               <h1>MGNREGA</h1>
