@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, MapPin } from 'lucide-react';
+import { Menu, MapPin, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Header.css';
 
 function Header() {
+  const { language, setLanguage, t } = useLanguage();
+
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -16,17 +23,29 @@ function Header() {
             />
             <div className="logo-text">
               <h1>MGNREGA</h1>
-              <p className="logo-subtitle">हमारी आवाज़, हमारे अधिकार</p>
+              <p className="logo-subtitle">Our voice, our rights</p>
             </div>
           </Link>
           
           <nav className="nav">
+            <div className="language-selector">
+              <Globe size={20} />
+              <select 
+                value={language} 
+                onChange={handleLanguageChange}
+                className="language-dropdown"
+              >
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="mr">मराठी</option>
+              </select>
+            </div>
             <Link to="/" className="nav-link">
               <MapPin size={24} />
-              <span>होम पेज</span>
+              <span>{t('backToHome')}</span>
             </Link>
             <Link to="/about" className="nav-link">
-              <span>जानकारी</span>
+              <span>{t('information')}</span>
             </Link>
           </nav>
         </div>
