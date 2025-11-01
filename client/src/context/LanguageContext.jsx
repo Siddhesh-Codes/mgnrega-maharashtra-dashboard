@@ -46,6 +46,8 @@ export const translations = {
     infrastructure: 'Infrastructure',
     crore: 'Crore',
     days: 'Days',
+    selectState: 'Select State',
+    districts: 'Districts',
   },
   
   hi: {
@@ -91,6 +93,8 @@ export const translations = {
     infrastructure: 'बुनियादी ढांचा',
     crore: 'करोड़',
     days: 'दिन',
+    selectState: 'राज्य चुनें',
+    districts: 'जिले',
   },
   
   mr: {
@@ -136,6 +140,8 @@ export const translations = {
     information: 'माहिती',
     crore: 'कोटी',
     days: 'दिवस',
+    selectState: 'राज्य निवडा',
+    districts: 'जिल्हे',
   }
 };
 

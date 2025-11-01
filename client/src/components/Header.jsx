@@ -16,7 +16,9 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
-            <div className="logo-emblem">🏛️</div>
+            <div className="logo-emblem">
+              <MapPin size={40} />
+            </div>
             <div className="logo-text">
               <h1>MGNREGA</h1>
               <p className="logo-subtitle">

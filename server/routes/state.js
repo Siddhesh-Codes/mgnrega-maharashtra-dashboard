@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const DistrictData = require('../models/DistrictData');
 const { cache } = require('../services/dataSync');
+const { INDIAN_STATES } = require('../config/states');
 
 /**
  * GET /api/states
@@ -9,21 +10,36 @@ const { cache } = require('../services/dataSync');
  */
 router.get('/', async (req, res) => {
   try {
-    const cacheKey = 'all_states';
-    const cached = cache.get(cacheKey);
+    const states = Object.keys(INDIAN_STATES).sort().map(stateName => ({
+      name: stateName,
+      code: INDIAN_STATES[stateName].code,
+      districtCount: INDIAN_STATES[stateName].districts.length
+    }));
     
-    if (cached) {
-      return res.json({ source: 'cache', data: cached });
-    }
-    
-    const states = await DistrictData.distinct('stateName');
-    
-    cache.set(cacheKey, states);
-    
-    res.json({ source: 'database', data: states });
+    res.json({ data: states });
   } catch (error) {
     console.error('Error fetching states:', error);
     res.status(500).json({ error: 'Failed to fetch states' });
+  }
+});
+
+/**
+ * GET /api/states/:stateName/districts
+ * Get districts for a specific state
+ */
+router.get('/:stateName/districts', async (req, res) => {
+  try {
+    const stateName = req.params.stateName.toUpperCase();
+    
+    if (!INDIAN_STATES[stateName]) {
+      return res.status(404).json({ error: 'State not found' });
+    }
+    
+    const districts = INDIAN_STATES[stateName].districts.sort();
+    res.json({ state: stateName, districts });
+  } catch (error) {
+    console.error('Error fetching districts:', error);
+    res.status(500).json({ error: 'Failed to fetch districts' });
   }
 });
 

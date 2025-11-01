@@ -106,6 +106,44 @@
   margin-bottom: 1.5rem;
 }
 
+.state-selector {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.state-label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.state-dropdown {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.state-dropdown:hover {
+  border-color: var(--primary-color);
+}
+
+.state-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
 .search-box {
   position: relative;
   margin-bottom: 2rem;

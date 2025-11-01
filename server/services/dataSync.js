@@ -40,19 +40,14 @@ async function fetchFromDataGovAPI(stateName, financialYear) {
   }
 }
 
+const { INDIAN_STATES } = require('../config/states');
+
 /**
  * Get state code for MGNREGA API
  */
 function getStateCode(stateName) {
-  const stateCodes = {
-    'MAHARASHTRA': '27',
-    'UTTAR PRADESH': '09',
-    'MADHYA PRADESH': '23',
-    'RAJASTHAN': '08',
-    'BIHAR': '10',
-    // Add more states as needed
-  };
-  return stateCodes[stateName.toUpperCase()] || '27';
+  const state = INDIAN_STATES[stateName.toUpperCase()];
+  return state ? state.code : '27';
 }
 
 /**
@@ -204,11 +199,12 @@ async function syncMGNREGAData(stateName = 'MAHARASHTRA') {
 }
 
 /**
- * Get sample/fallback data for Maharashtra districts
+ * Get sample/fallback data for any state districts
  */
 function getSampleData(stateName = 'MAHARASHTRA') {
-  // Sample data for demonstration - represents major Maharashtra districts
-  const districts = [
+  // Get districts from config or use fallback
+  const stateConfig = INDIAN_STATES[stateName.toUpperCase()];
+  const districts = stateConfig ? stateConfig.districts : [
     'MUMBAI', 'PUNE', 'NAGPUR', 'THANE', 'NASHIK', 
     'AURANGABAD', 'SOLAPUR', 'AMRAVATI', 'KOLHAPUR', 'SANGLI',
     'JALGAON', 'AHMEDNAGAR', 'LATUR', 'DHULE', 'RATNAGIRI',

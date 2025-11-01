@@ -8,20 +8,37 @@ import './Home.css';
 function Home() {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [detectingLocation, setDetectingLocation] = useState(false);
-  const [selectedState] = useState('MAHARASHTRA');
+  const [selectedState, setSelectedState] = useState('MAHARASHTRA');
 
   useEffect(() => {
-    fetchDistricts();
+    fetchStates();
   }, []);
+
+  useEffect(() => {
+    if (selectedState) {
+      fetchDistricts();
+    }
+  }, [selectedState]);
+
+  const fetchStates = async () => {
+    try {
+      const response = await axios.get('/api/states');
+      setStates(response.data.data);
+    } catch (error) {
+      console.error('Error fetching states:', error);
+    }
+  };
 
   const fetchDistricts = async () => {
     try {
-      const response = await axios.get(`/api/districts?state=${selectedState}`);
-      setDistricts(response.data.data);
+      setLoading(true);
+      const response = await axios.get(`/api/states/${selectedState}/districts`);
+      setDistricts(response.data.districts);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching districts:', error);
@@ -108,6 +125,24 @@ function Home() {
             {t('selectDistrict')}
           </h2>
           
+          <div className="state-selector">
+            <label htmlFor="state-select" className="state-label">
+              {t('selectState')}:
+            </label>
+            <select
+              id="state-select"
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+              className="state-dropdown"
+            >
+              {states.map((state) => (
+                <option key={state.name} value={state.name}>
+                  {state.name} ({state.districtCount} {t('districts')})
+                </option>
+              ))}
+            </select>
+          </div>
+          
           <div className="search-box">
             <Search className="search-icon" size={24} />
             <input
@@ -148,7 +183,7 @@ function Home() {
         <div className="info-cards">
           <div className="info-card">
             <div className="info-icon" style={{ background: '#dbeafe' }}>
-              <span style={{ fontSize: '2rem' }}>👥</span>
+              <MapPin size={32} />
             </div>
             <h3>12.15 {t('crore')}+</h3>
             <p>{t('beneficiaries')} (2025)</p>
@@ -156,7 +191,7 @@ function Home() {
 
           <div className="info-card">
             <div className="info-icon" style={{ background: '#d1fae5' }}>
-              <span style={{ fontSize: '2rem' }}>💼</span>
+              <TrendingUp size={32} />
             </div>
             <h3>100 {t('days')}</h3>
             <p>{t('guaranteedDays')}</p>
@@ -164,7 +199,7 @@ function Home() {
 
           <div className="info-card">
             <div className="info-icon" style={{ background: '#fef3c7' }}>
-              <span style={{ fontSize: '2rem' }}>🏗️</span>
+              <Search size={32} />
             </div>
             <h3>{t('ruralDevelopment')}</h3>
             <p>{t('infrastructure')}</p>
