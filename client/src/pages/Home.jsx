@@ -150,24 +150,24 @@ function Home() {
             <div className="info-icon" style={{ background: '#dbeafe' }}>
               <span style={{ fontSize: '2rem' }}>👥</span>
             </div>
-            <h3>12.15 करोड़+</h3>
-            <p>लाभार्थी (2025)</p>
+            <h3>12.15 {t('crore')}+</h3>
+            <p>{t('beneficiaries')} (2025)</p>
           </div>
 
           <div className="info-card">
             <div className="info-icon" style={{ background: '#d1fae5' }}>
               <span style={{ fontSize: '2rem' }}>💼</span>
             </div>
-            <h3>100 दिन</h3>
-            <p>गारंटीड रोजगार</p>
+            <h3>100 {t('days')}</h3>
+            <p>{t('guaranteedDays')}</p>
           </div>
 
           <div className="info-card">
             <div className="info-icon" style={{ background: '#fef3c7' }}>
               <span style={{ fontSize: '2rem' }}>🏗️</span>
             </div>
-            <h3>ग्रामीण विकास</h3>
-            <p>बुनियादी ढांचा</p>
+            <h3>{t('ruralDevelopment')}</h3>
+            <p>{t('infrastructure')}</p>
           </div>
         </div>
       </div>

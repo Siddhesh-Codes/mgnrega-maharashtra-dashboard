@@ -41,9 +41,11 @@ export const translations = {
     backToHome: 'Back to Home',
     information: 'Information',
     beneficiaries: 'Beneficiaries',
-    guaranteedDays: '100 Days Guaranteed Employment',
+    guaranteedDays: 'Guaranteed Employment',
     ruralDevelopment: 'Rural Development',
     infrastructure: 'Infrastructure',
+    crore: 'Crore',
+    days: 'Days',
   },
   
   hi: {
@@ -84,9 +86,11 @@ export const translations = {
     backToHome: 'होम पर वापस जाएं',
     information: 'जानकारी',
     beneficiaries: 'लाभार्थी',
-    guaranteedDays: '100 दिन गारंटीड रोजगार',
+    guaranteedDays: 'गारंटीड रोजगार',
     ruralDevelopment: 'ग्रामीण विकास',
     infrastructure: 'बुनियादी ढांचा',
+    crore: 'करोड़',
+    days: 'दिन',
   },
   
   mr: {
@@ -130,6 +134,8 @@ export const translations = {
     noData: 'डेटा उपलब्ध नाही',
     backToHome: 'मुख्यपृष्ठावर परत जा',
     information: 'माहिती',
+    crore: 'कोटी',
+    days: 'दिवस',
   }
 };
 
