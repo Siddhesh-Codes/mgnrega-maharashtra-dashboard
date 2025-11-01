@@ -18,18 +18,25 @@ function DistrictDashboard() {
   const { t } = useLanguage();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  // Get state from URL query params
+  const searchParams = new URLSearchParams(window.location.search);
+  const stateName = searchParams.get('state') || 'MAHARASHTRA';
 
   useEffect(() => {
     fetchDistrictData();
-  }, [districtName]);
+  }, [districtName, stateName]);
 
   const fetchDistrictData = async () => {
     try {
-      const response = await axios.get(`/api/districts/${districtName}/summary?state=MAHARASHTRA`);
+      console.log(`Fetching data for ${districtName} in ${stateName}`);
+      const response = await axios.get(`/api/districts/${districtName}/summary?state=${stateName}`);
+      console.log('District data received:', response.data);
       setData(response.data.data);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching district data:', error);
+      console.error('Error details:', error.response?.data);
       setLoading(false);
     }
   };

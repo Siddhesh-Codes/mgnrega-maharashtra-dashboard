@@ -60,7 +60,7 @@ function Home() {
   };
 
   const handleDistrictSelect = (districtName) => {
-    navigate(`/district/${districtName}`);
+    navigate(`/district/${districtName}?state=${selectedState}`);
   };
 
   const handleAutoDetect = () => {
