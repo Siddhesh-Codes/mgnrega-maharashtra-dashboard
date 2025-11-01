@@ -98,6 +98,11 @@ function Home() {
     district.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Debug logging
+  console.log('Districts array:', districts);
+  console.log('Filtered districts:', filteredDistricts);
+  console.log('Selected state:', selectedState);
+
   return (
     <div className="home-page">
       <div className="hero-section">
