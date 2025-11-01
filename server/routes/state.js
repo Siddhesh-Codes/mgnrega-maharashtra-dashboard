@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DistrictData = require('../models/DistrictData');
-const { cache } = require('../services/dataSync');
+const { cache, syncAllStates, syncMGNREGAData } = require('../services/dataSync');
 const { INDIAN_STATES } = require('../config/states');
 
 /**
@@ -101,6 +101,46 @@ router.get('/:stateName/overview', async (req, res) => {
   } catch (error) {
     console.error('Error fetching state overview:', error);
     res.status(500).json({ error: 'Failed to fetch state overview' });
+  }
+});
+
+/**
+ * POST /api/states/sync
+ * Manually trigger data sync for all states
+ */
+router.post('/sync', async (req, res) => {
+  try {
+    console.log('Manual sync triggered for all states');
+    res.json({ message: 'Sync started in background', status: 'processing' });
+    
+    // Run sync in background
+    syncAllStates().catch(err => console.error('Manual sync error:', err));
+  } catch (error) {
+    console.error('Error triggering sync:', error);
+    res.status(500).json({ error: 'Failed to trigger sync' });
+  }
+});
+
+/**
+ * POST /api/states/:stateName/sync
+ * Manually trigger data sync for a specific state
+ */
+router.post('/:stateName/sync', async (req, res) => {
+  try {
+    const stateName = req.params.stateName.toUpperCase();
+    
+    if (!INDIAN_STATES[stateName]) {
+      return res.status(404).json({ error: 'State not found' });
+    }
+    
+    console.log(`Manual sync triggered for ${stateName}`);
+    res.json({ message: `Sync started for ${stateName}`, status: 'processing' });
+    
+    // Run sync in background
+    syncMGNREGAData(stateName).catch(err => console.error(`Sync error for ${stateName}:`, err));
+  } catch (error) {
+    console.error('Error triggering sync:', error);
+    res.status(500).json({ error: 'Failed to trigger sync' });
   }
 });
 

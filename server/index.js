@@ -10,7 +10,7 @@ const path = require('path');
 const districtRoutes = require('./routes/district');
 const stateRoutes = require('./routes/state');
 const locationRoutes = require('./routes/location');
-const { syncMGNREGAData } = require('./services/dataSync');
+const { syncMGNREGAData, syncAllStates } = require('./services/dataSync');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -49,18 +49,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mgnrega',
 .then(() => {
   console.log('✅ Connected to MongoDB');
   
-  // Initial data sync
-  console.log('🔄 Starting initial data sync...');
-  syncMGNREGAData().catch(err => console.error('Initial sync error:', err));
+  // Initial data sync for all states
+  console.log('🔄 Starting initial data sync for all states...');
+  syncAllStates().catch(err => console.error('Initial sync error:', err));
 })
 .catch((err) => {
   console.error('❌ MongoDB connection error:', err);
 });
 
-// Schedule daily data sync at 2 AM
+// Schedule daily data sync at 2 AM for all states
 cron.schedule('0 2 * * *', () => {
-  console.log('🔄 Running scheduled data sync...');
-  syncMGNREGAData().catch(err => console.error('Scheduled sync error:', err));
+  console.log('🔄 Running scheduled data sync for all states...');
+  syncAllStates().catch(err => console.error('Scheduled sync error:', err));
 });
 
 // Error handling middleware

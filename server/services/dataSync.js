@@ -240,8 +240,38 @@ function getSampleData(stateName = 'MAHARASHTRA') {
   };
 }
 
+/**
+ * Sync data for all states
+ */
+async function syncAllStates() {
+  console.log('🔄 Starting sync for all states...');
+  const states = Object.keys(INDIAN_STATES);
+  const results = [];
+  
+  for (const stateName of states) {
+    try {
+      console.log(`\n📊 Syncing ${stateName}...`);
+      const result = await syncMGNREGAData(stateName);
+      results.push({ state: stateName, success: true, result });
+      
+      // Add small delay to avoid API rate limiting
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } catch (error) {
+      console.error(`❌ Failed to sync ${stateName}:`, error.message);
+      results.push({ state: stateName, success: false, error: error.message });
+    }
+  }
+  
+  const successful = results.filter(r => r.success).length;
+  const failed = results.filter(r => !r.success).length;
+  
+  console.log(`\n✅ Sync complete: ${successful} states synced, ${failed} failed`);
+  return results;
+}
+
 module.exports = {
   fetchFromDataGovAPI,
   syncMGNREGAData,
+  syncAllStates,
   cache
 };
