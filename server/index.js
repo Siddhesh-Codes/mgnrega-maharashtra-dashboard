@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const mongoose = require('mongoose');
 const cron = require('node-cron');
+const path = require('path');
 
 const districtRoutes = require('./routes/district');
 const stateRoutes = require('./routes/state');
@@ -29,6 +30,16 @@ app.get('/api/health', (req, res) => {
 app.use('/api/districts', districtRoutes);
 app.use('/api/states', stateRoutes);
 app.use('/api/location', locationRoutes);
+
+// Serve static files from React build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+  });
+}
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mgnrega', {
