@@ -1,193 +1,383 @@
-# MGNREGA Dashboard - हमारी आवाज़, हमारे अधिकार
+# MGNREGA Dashboard - हमारी आवाज़, हमारे अधिकार# MGNREGA Dashboard - हमारी आवाज़, हमारे अधिकार
 
-## 🎯 Project Overview
 
-A production-ready web application that makes MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act) data accessible to rural Indians with low data literacy. The platform provides district-wise performance metrics in an easy-to-understand visual format.
+
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://mgnrega-maharashtra-dashboard-production.up.railway.app)## 🎯 Project Overview
+
+[![GitHub](https://img.shields.io/badge/github-repo-blue)](https://github.com/Siddhesh-Codes/mgnrega-maharashtra-dashboard)
+
+[![Node.js](https://img.shields.io/badge/node-%3E%3D18-green)](https://nodejs.org)A production-ready web application that makes MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act) data accessible to rural Indians with low data literacy. The platform provides district-wise performance metrics in an easy-to-understand visual format.
+
+[![MongoDB](https://img.shields.io/badge/mongodb-7.0-green)](https://www.mongodb.com)
 
 ### Key Features
 
+> A production-ready web application making MGNREGA data accessible across India with multi-language support
+
 - ✅ **Auto-detect user location** to show relevant district data
-- 📊 **Visual dashboards** with charts and simple metrics
+
+## 🎯 Overview- 📊 **Visual dashboards** with charts and simple metrics
+
 - 🗣️ **Hindi language interface** for better accessibility
-- 💾 **Offline-first architecture** with database caching
+
+This dashboard provides transparent access to MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act) employment data for **16 Indian states** and **541 districts** in a simple, visual format.- 💾 **Offline-first architecture** with database caching
+
 - 🚀 **Production-ready** with Docker deployment
-- 📱 **Mobile-responsive** design
+
+**Live Demo**: [https://mgnrega-maharashtra-dashboard-production.up.railway.app](https://mgnrega-maharashtra-dashboard-production.up.railway.app)- 📱 **Mobile-responsive** design
+
 - ⚡ **High performance** with caching layers
+
+## ✨ Key Features
 
 ## 🏗️ Architecture
 
-### Technology Stack
+| Feature | Description |
 
-**Frontend:**
-- React 18 with Vite
-- Recharts for data visualization
-- Lucide React for icons
-- CSS3 with custom variables
+|---------|-------------|### Technology Stack
+
+| 🗺️ **Multi-State** | Coverage of 16 Indian states |
+
+| 📍 **Auto-Location** | Detect user's district automatically |**Frontend:**
+
+| 🌐 **Multi-Language** | English, Hindi (हिंदी), Marathi (मराठी) |- React 18 with Vite
+
+| 📊 **Visual Charts** | Interactive data visualization |- Recharts for data visualization
+
+| 📱 **Mobile Ready** | Responsive design for all devices |- Lucide React for icons
+
+| ⚡ **Fast** | Cached responses < 500ms |- CSS3 with custom variables
+
+| 🎨 **Professional** | Custom branding and logo |
 
 **Backend:**
-- Node.js with Express
+
+## 🚀 Quick Start- Node.js with Express
+
 - MongoDB for data persistence
-- Node-Cron for scheduled data sync
-- NodeCache for in-memory caching
+
+### Prerequisites- Node-Cron for scheduled data sync
+
+- Node.js 18+- NodeCache for in-memory caching
+
+- MongoDB 7.0+
 
 **Infrastructure:**
-- Docker & Docker Compose
-- Nginx reverse proxy
-- MongoDB database
 
-### Design Decisions
+### Installation- Docker & Docker Compose
+
+- Nginx reverse proxy
+
+```bash- MongoDB database
+
+# Clone repository
+
+git clone https://github.com/Siddhesh-Codes/mgnrega-maharashtra-dashboard.git### Design Decisions
+
+cd mgnrega-maharashtra-dashboard
 
 #### 1. **Low-Literacy Friendly UI**
-- Large fonts (18px base, up to 2.5rem headings)
-- Icon-based navigation with minimal text
-- Color-coded metrics (green = good, orange = needs attention)
-- Simple charts with clear labels
-- Hindi language support
 
-#### 2. **Data Caching Strategy**
+# Install dependencies- Large fonts (18px base, up to 2.5rem headings)
+
+npm install- Icon-based navigation with minimal text
+
+cd client && npm install && cd ..- Color-coded metrics (green = good, orange = needs attention)
+
+- Simple charts with clear labels
+
+# Setup environment- Hindi language support
+
+cp .env.example .env
+
+# Edit .env with your MONGODB_URI#### 2. **Data Caching Strategy**
+
 - **Layer 1:** In-memory cache (1 hour TTL) for API responses
-- **Layer 2:** MongoDB database for historical data
-- **Layer 3:** Scheduled daily sync from data.gov.in API
-- Graceful fallback to sample data if API is unavailable
+
+# Start development- **Layer 2:** MongoDB database for historical data
+
+npm run dev           # Terminal 1: Backend- **Layer 3:** Scheduled daily sync from data.gov.in API
+
+cd client && npm run dev  # Terminal 2: Frontend- Graceful fallback to sample data if API is unavailable
+
+```
 
 #### 3. **Location Detection**
-- Browser Geolocation API for coordinates
+
+Visit: http://localhost:5173- Browser Geolocation API for coordinates
+
 - Haversine formula for nearest district calculation
-- Fallback to manual selection if location denied
 
-#### 4. **Production Readiness**
-- Rate limiting (100 req/15min per IP)
-- Gzip compression
+## 🛠️ Tech Stack- Fallback to manual selection if location denied
+
+
+
+**Frontend**: React 18, Vite, Recharts, React Router  #### 4. **Production Readiness**
+
+**Backend**: Node.js, Express, MongoDB, Mongoose  - Rate limiting (100 req/15min per IP)
+
+**Deployment**: Railway.app (FREE hosting)- Gzip compression
+
 - Security headers (Helmet.js)
-- Error handling middleware
+
+## 📊 Data Coverage- Error handling middleware
+
 - Health check endpoints
-- Logging system
 
-## 📁 Project Structure
+- **States**: 16 major Indian states- Logging system
+
+- **Districts**: 541 districts
+
+- **Metrics**: Job cards, employment, expenditure, projects## 📁 Project Structure
+
+- **Languages**: English, Hindi, Marathi
 
 ```
-mgnrega-dashboard/
+
+## 📁 Project Structuremgnrega-dashboard/
+
 ├── client/                  # React frontend
-│   ├── src/
-│   │   ├── components/     # Reusable components
-│   │   │   └── Header.jsx
-│   │   ├── pages/          # Page components
-│   │   │   ├── Home.jsx
-│   │   │   ├── DistrictDashboard.jsx
-│   │   │   └── About.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-├── server/                  # Node.js backend
-│   ├── models/             # MongoDB schemas
+
+```│   ├── src/
+
+├── client/              # React frontend│   │   ├── components/     # Reusable components
+
+│   ├── public/          # Static assets (logo, favicon)│   │   │   └── Header.jsx
+
+│   └── src/│   │   ├── pages/          # Page components
+
+│       ├── components/  # Reusable components│   │   │   ├── Home.jsx
+
+│       ├── pages/       # Page components│   │   │   ├── DistrictDashboard.jsx
+
+│       └── context/     # React Context (Language)│   │   │   └── About.jsx
+
+├── server/              # Node.js backend│   │   ├── App.jsx
+
+│   ├── config/          # State configurations│   │   └── main.jsx
+
+│   ├── models/          # MongoDB schemas│   ├── index.html
+
+│   ├── routes/          # API endpoints│   ├── package.json
+
+│   └── services/        # Data sync services│   └── vite.config.js
+
+└── docs/                # Documentation├── server/                  # Node.js backend
+
+```│   ├── models/             # MongoDB schemas
+
 │   │   ├── DistrictData.js
-│   │   └── DistrictLocation.js
+
+## 🌐 API Endpoints│   │   └── DistrictLocation.js
+
 │   ├── routes/             # API routes
-│   │   ├── district.js
-│   │   ├── state.js
-│   │   └── location.js
+
+```bash│   │   ├── district.js
+
+# Get all states│   │   ├── state.js
+
+GET /api/states│   │   └── location.js
+
 │   ├── services/           # Business logic
-│   │   └── dataSync.js
-│   └── index.js            # Server entry point
+
+# Get districts for a state│   │   └── dataSync.js
+
+GET /api/states/:stateName/districts│   └── index.js            # Server entry point
+
 ├── Dockerfile              # Container configuration
-├── docker-compose.yml      # Multi-container setup
-├── nginx.conf              # Nginx configuration
+
+# Get district details├── docker-compose.yml      # Multi-container setup
+
+GET /api/districts/:districtName/summary?state=STATE_NAME├── nginx.conf              # Nginx configuration
+
 ├── deploy.sh               # Deployment script
-├── package.json
-└── README.md
-```
 
-## 🚀 Installation & Setup
+# Auto-detect location├── package.json
 
-### Prerequisites
-- Node.js 18+ 
+POST /api/location/detect-district└── README.md
+
+``````
+
+
+
+## 🎨 Features Showcase## 🚀 Installation & Setup
+
+
+
+### State Selection### Prerequisites
+
+Select from 16 Indian states and view district-level data- Node.js 18+ 
+
 - MongoDB 7+
-- Docker & Docker Compose (for production)
 
-### Local Development
+### District Dashboard- Docker & Docker Compose (for production)
 
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd GOV\ Project
+- Total job cards issued
+
+- Active workers employed  ### Local Development
+
+- Employment days provided
+
+- Total expenditure1. **Clone the repository**
+
+- Work completion rates```bash
+
+- Women participationgit clone <repository-url>
+
+- Social category distributioncd GOV\ Project
+
 ```
 
-2. **Install dependencies**
-```bash
-npm run install-all
-```
+### Multi-Language
 
-3. **Configure environment**
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-4. **Start MongoDB**
-```bash
-# If using Docker:
-docker run -d -p 27017:27017 --name mongodb mongo:7
-
-# Or use local MongoDB installation
-```
-
-5. **Run development servers**
-```bash
-npm run dev
-```
-
-This starts:
-- Backend server: http://localhost:5000
-- Frontend dev server: http://localhost:3000
-
-### Production Deployment
-
-1. **On your VPS (Ubuntu/Debian):**
-```bash
-# Make deployment script executable
-chmod +x deploy.sh
-
-# Run deployment
-./deploy.sh
-```
-
-2. **Configure firewall**
-```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw enable
-```
-
-3. **Access your application**
-```
-http://YOUR_SERVER_IP
-```
-
-### Manual Docker Deployment
+Switch between English, Hindi, and Marathi for better accessibility2. **Install dependencies**
 
 ```bash
-# Build and start all services
-docker-compose up -d
 
-# View logs
-docker-compose logs -f
+## 🔧 Configurationnpm run install-all
 
-# Stop services
-docker-compose down
 ```
-
-## 🔧 Configuration
 
 ### Environment Variables
 
-```env
-# Server
-PORT=5000
-NODE_ENV=production
+3. **Configure environment**
 
-# Database
+```env```bash
+
+# Requiredcp .env.example .env
+
+MONGODB_URI=mongodb://localhost:27017/mgnrega# Edit .env with your configuration
+
+NODE_ENV=development```
+
+PORT=5000
+
+4. **Start MongoDB**
+
+# Optional```bash
+
+CACHE_TTL=3600# If using Docker:
+
+```docker run -d -p 27017:27017 --name mongodb mongo:7
+
+
+
+### Adding New States# Or use local MongoDB installation
+
+```
+
+Edit `server/config/states.js`:
+
+5. **Run development servers**
+
+```javascript```bash
+
+'STATE_NAME': {npm run dev
+
+  code: 'XX',  // MGNREGA state code```
+
+  districts: ['DISTRICT1', 'DISTRICT2', ...]
+
+}This starts:
+
+```- Backend server: http://localhost:5000
+
+- Frontend dev server: http://localhost:3000
+
+## 🚀 Deployment
+
+### Production Deployment
+
+Deployed on **Railway.app** with:
+
+- ✅ Automatic deployments from GitHub1. **On your VPS (Ubuntu/Debian):**
+
+- ✅ MongoDB hosting included```bash
+
+- ✅ Free SSL certificates# Make deployment script executable
+
+- ✅ Environment variable managementchmod +x deploy.sh
+
+
+
+**Deploy Your Own**:# Run deployment
+
+1. Fork this repository./deploy.sh
+
+2. Connect to Railway.app```
+
+3. Add MONGODB_URI environment variable
+
+4. Deploy!2. **Configure firewall**
+
+```bash
+
+## 📚 Documentationsudo ufw allow 80/tcp
+
+sudo ufw allow 443/tcp
+
+Comprehensive documentation available in [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md):sudo ufw enable
+
+```
+
+- Complete API reference
+
+- Deployment guide3. **Access your application**
+
+- Architecture details```
+
+- Performance optimizationhttp://YOUR_SERVER_IP
+
+- Troubleshooting guide```
+
+
+
+## 🤝 Contributing### Manual Docker Deployment
+
+
+
+Contributions welcome! Please:```bash
+
+1. Fork the repository# Build and start all services
+
+2. Create a feature branchdocker-compose up -d
+
+3. Make your changes
+
+4. Submit a pull request# View logs
+
+docker-compose logs -f
+
+## 📝 License
+
+# Stop services
+
+Open source - Available for educational purposesdocker-compose down
+
+```
+
+## 👨‍💻 Author
+
+## 🔧 Configuration
+
+**Developed for**: Bharat Digital Fellowship Program  
+
+**Purpose**: Making government data accessible to every Indian  ### Environment Variables
+
+**Year**: 2025
+
+```env
+
+---# Server
+
+PORT=5000
+
+### 🌟 Star this repo if you find it useful!NODE_ENV=production
+
+
+
+**Live Demo**: [View Dashboard →](https://mgnrega-maharashtra-dashboard-production.up.railway.app)# Database
+
 MONGODB_URI=mongodb://localhost:27017/mgnrega
 
 # API (Optional)
